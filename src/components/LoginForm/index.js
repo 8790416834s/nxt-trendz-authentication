@@ -18,16 +18,16 @@ class LoginForm extends Component {
     history.replace('/')
   }
 
-  onSubmitFailure = () => {
+  onSubmitFailure = errorMsg => {
     const {username, password} = this.state
     if (username !== '' && password === '') {
-      this.setState({error: "Password shouldn't be empty"})
+      this.setState({error: errorMsg})
     } else if (username === '' && password !== '') {
-      this.setState({error: "Username shouldn't be empty"})
+      this.setState({error: errorMsg})
     } else if (username !== '' && password !== '') {
-      this.setState({error: "*Username and Password didn't match"})
+      this.setState({error: errorMsg})
     } else if (username === '' && password === '') {
-      this.setState({error: "Fields shouldn't be empty"})
+      this.setState({error: errorMsg})
     }
   }
 
@@ -44,11 +44,12 @@ class LoginForm extends Component {
       body: JSON.stringify(userDetails),
     }
     const response = await fetch(url, options)
-    console.log(response)
+    const data = await response.json()
+    console.log(data)
     if (response.ok === true) {
       this.onSubmitSucess()
     } else {
-      this.onSubmitFailure()
+      this.onSubmitFailure(data.error_msg)
     }
   }
 
