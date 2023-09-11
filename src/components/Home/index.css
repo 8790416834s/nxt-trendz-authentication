@@ -1,0 +1,23 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.heading {
+  font-family: 'Roboto';
+}
+.description {
+  color: #64748b;
+  font-family: 'Roboto';
+}
+.show-now-btn {
+  background-color: #0b69ff;
+  color: #ffffff;
+  border-width: 0px;
+}
